@@ -1,16 +1,38 @@
 import messagingClient from "./messagingClient.js";
 import cohereAI from "./cohereClient.js";
+import figlet from "figlet";
 
 class App {
   constructor() {}
 
   init() {
-    console.log("Initializing chec:xpire app.");
+    console.log("--------------------------------------");
+    console.log("Initializing app. Please hold!");
+
+    figlet.text(
+      "* chec:xpire *",
+      {
+        font: "Standard",
+        horizontalLayout: "default",
+        verticalLayout: "default",
+        width: 80,
+        whitespaceBreak: true,
+      },
+      function (err, data) {
+        if (err) {
+          console.log("Something went wrong...");
+          console.dir(err);
+          return;
+        }
+        console.log(data);
+      }
+    );
 
     messagingClient
       .connectWithPromise()
       .then((response) => {
-        console.log(response, "to broker.");
+        console.log(response, "to broker. Ready to use!");
+        console.log("--------------------------------------");
 
         messagingClient.registerMessageHandler(app.messageHandler.bind(this));
       })
