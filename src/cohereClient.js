@@ -9,11 +9,13 @@ function cohereClient() {
   }
 
   async function findRecipe(foodItems) {
+    const prompt = `Find a recipe that includes ${formatString(
+      foodItems
+    )}. Invent a nice name for this recipe and write it first. List down the ingredients and steps.`;
+
     const response = await cohere.generate({
       model: "command-xlarge-nightly",
-      prompt: `Find a recipe that includes ${formatString(
-        foodItems
-      )}. Invent a nice name for this recipe and write it first. List down the ingredients and steps.`,
+      prompt: prompt,
       max_tokens: 450,
       temperature: 1.5,
       k: 0,
