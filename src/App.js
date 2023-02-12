@@ -1,6 +1,7 @@
 import messagingClient from "./messagingClient.js";
 import cohereAI from "./cohereClient.js";
 import figlet from "figlet";
+import chalk from "chalk";
 
 class App {
   constructor() {}
