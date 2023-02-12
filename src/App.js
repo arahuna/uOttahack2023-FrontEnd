@@ -1,4 +1,5 @@
 import messagingClient from "./messagingClient.js";
+import cohereAI from "./cohereClient.js";
 
 class App {
   constructor() {}
@@ -19,12 +20,23 @@ class App {
   }
 
   messageHandler(topicString, messageString) {
-    console.log("Message received on topic:", topicString, "::", messageString);
-
     switch (topicString) {
       case "expired":
-        const message = JSON.parse(messageString);
-        console.log("Message as object:", message);
+        // Insert functionality here
+        const obj = JSON.parse(messageString);
+
+        console.log(obj); // this is the thing you need to fix
+
+        cohereAI
+          .findRecipe(obj.items)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log("There was an error generating your recipe", err);
+          });
+
+        // END
         break;
       default: {
         console.warn("No handler for topic:", topicString);
