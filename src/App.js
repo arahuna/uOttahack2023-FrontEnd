@@ -8,13 +8,13 @@ class App {
 
   init() {
     console.log("--------------------------------------");
-    console.log("Initializing app. Please hold!");
+    console.log("\n" + "Initializing app. Please hold!" + "\n");
 
     figlet.text(
       "* chec:xpire *",
       {
         font: "Standard",
-        horizontalLayout: "default",
+        horizontalLayout: "fitted",
         verticalLayout: "default",
         width: 80,
         whitespaceBreak: true,
@@ -29,11 +29,16 @@ class App {
       }
     );
 
+    console.log(
+      chalk.magentaBright.bold(
+        "Helping Reduce Food Wastage One Ingredient At A Time!"
+      )
+    );
+
     messagingClient
       .connectWithPromise()
       .then((response) => {
-        console.log(response, "to broker. Ready to use!");
-        console.log("--------------------------------------");
+        console.log(response, "to broker. Ready to use!" + "\n");
 
         messagingClient.registerMessageHandler(app.messageHandler.bind(this));
       })
@@ -48,14 +53,18 @@ class App {
         // Insert functionality here
         const obj = JSON.parse(messageString);
 
+        console.log("--------------------------------------");
         console.log(
-          "Searching your fridge for food that's about to expire! Hang tight!"
+          chalk.magenta(
+            "\n" +
+              "Searching your fridge for food that's about to expire! Hang tight!" +
+              "\n"
+          )
         ); // waiting message
 
-        console.log("EXPIRING SOON:");
-        console.log(obj.map((item) => `${item.quantity} of ${item.name}`));
-
         if (obj.length > 0) {
+          process.stdout.write(chalk.red.bold("EXPIRING SOON: "));
+          console.log(obj.map((item) => `${item.quantity} of ${item.name}`));
           cohereAI
             .findRecipe(obj)
             .then((res) => {
@@ -66,7 +75,19 @@ class App {
             });
         } else {
           console.log(
-            "No items expiring soon! Great job keeping on top of your groceries!"
+            figlet.textSync("Yay!", {
+              font: "Standard",
+              horizontalLayout: "fitted",
+              verticalLayout: "default",
+              width: 40,
+              whitespaceBreak: true,
+            })
+          );
+          console.log(
+            "\n" +
+              chalk.cyan.bold(
+                "No items expiring soon! Great job keeping on top of your groceries :-)"
+              )
           );
           break;
         }
@@ -85,7 +106,7 @@ class App {
 
   subscribeToTopic(topic) {
     messagingClient.subscribe(topic);
-    console.log("Subscribed to topic:", topic);
+    //console.log("Subscribed to topic:", topic);
   }
 }
 

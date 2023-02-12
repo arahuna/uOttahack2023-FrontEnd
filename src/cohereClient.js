@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import cohere from "cohere-ai";
 cohere.init("BnN79b2KLysqZbikJTZktJotkqaOl5ouRXFkqhHO"); // This is our API key
 
@@ -25,7 +26,8 @@ function cohereClient() {
       stop_sequences: [],
       return_likelihoods: "NONE",
     });
-    console.log(`Prediction: ${response.body.generations[0].text}`);
+    console.log(chalk.green.bold("\n" + "Here's your recipe!"));
+    console.log(`${response.body.generations[0].text}`);
   }
 
   return {
