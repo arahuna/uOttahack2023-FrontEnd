@@ -30,9 +30,7 @@ class App {
     );
 
     console.log(
-      chalk.magentaBright.bold(
-        "Helping Reduce Food Wastage One Ingredient At A Time!"
-      )
+      chalk.red.bold("Helping Reduce Food Wastage One Ingredient At A Time!")
     );
 
     messagingClient
@@ -57,7 +55,7 @@ class App {
         console.log(
           chalk.magenta(
             "\n" +
-              "Searching your fridge for food that's about to expire! Hang tight!" +
+              "Searching your fridge for food that's about to expire! Hang tight..." +
               "\n"
           )
         ); // waiting message
@@ -65,6 +63,12 @@ class App {
         if (obj.length > 0) {
           process.stdout.write(chalk.red.bold("EXPIRING SOON: "));
           console.log(obj.map((item) => `${item.quantity} of ${item.name}`));
+          console.log(
+            chalk.yellow(
+              "\n" +
+                "Finding a recipe for you that uses these ingredients... .. ."
+            )
+          );
           cohereAI
             .findRecipe(obj)
             .then((res) => {
