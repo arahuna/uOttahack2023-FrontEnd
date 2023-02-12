@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import app from "./App.js";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+app.init();
+
+app.subscribeToTopic("expired");
