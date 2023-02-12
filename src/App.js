@@ -25,7 +25,7 @@ class App {
         // Insert functionality here
         const obj = JSON.parse(messageString);
 
-        console.log(obj); // this is the thing you need to fix
+        console.log(obj); // this is the thing you need to fix/make pretty
 
         cohereAI
           .findRecipe(obj.items)
