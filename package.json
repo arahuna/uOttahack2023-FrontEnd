@@ -1,0 +1,22 @@
+{
+  "name": "uottahack2023-server",
+  "version": "1.0.0",
+  "description": "This is the repo for our project for uOttaHack 2023. Maybe it will work, maybe it won't. We'll see.",
+  "main": "coheretest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arahuna/uOttahack2023-Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arahuna/uOttahack2023-Server/issues"
+  },
+  "homepage": "https://github.com/arahuna/uOttahack2023-Server#readme",
+  "dependencies": {
+    "cohere-ai": "^5.0.2"
+  }
+}
